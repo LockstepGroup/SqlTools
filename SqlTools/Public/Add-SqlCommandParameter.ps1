@@ -1,20 +1,31 @@
 function Add-SqlCommandParameter {
     <#
 	.SYNOPSIS
-		Adds a Paramaterized Value to an Sql Command
+		Adds a Paramaterized Value to an Sql Command.
 		
     .DESCRIPTION
-        Creates a Command to execute against an existing SQL Connection.
+        Takes an existing SqlCommand Object and adds Parameters with Values.
 
     .EXAMPLE
+        $Connection = Connect-SqlServer -Server "mysqlserver.example.com" -Database "MyFavoriteDb" -Credential (Get-Credential)
+        $Command = $Connection | New-SqlCommand -SqlCommand "INSERT INTO [dbo].[People] (Name) Values (@Name)"
+        $Command = $Command | Add-SqlCommandParameter -SqlParameterName "@Name" -SqlParameterType VarChar -SqlParameterValue "John Smith"
+
+        Connects to MyFavoriteDb on mysqlserver.example.com (prompting for credentials).
+        Creates an SqlCommand to insert into the Name column of the [dbo].[People] Table.
+        Adds @Name Parameter with a type of VarChar and value of John Smith to $Command
 
     .PARAMETER SqlCommand
+    SqlCommand Object to add Parameter to.
 
     .PARAMETER SqlParameterName
+    Name of the Sql Parameter you wish to set, ie: @DesiredParametereName.
 
     .PARAMETER SqlParameterType
+    Type of the Sql Parameter you wish to set, ie: VarChar.
 
     .PARAMETER SqlParameterValue
+    Value of the Sql Parameter you wish to set.
 		
 	#>
 	[cmdletbinding()]
