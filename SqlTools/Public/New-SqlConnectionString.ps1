@@ -27,24 +27,24 @@ function New-SqlConnectionString {
 
     .PARAMETER UseWindowsAuthentication
         Specifies that current Windows Credentials should be used for the Connection.
+        Note that these credentials will be available in plaintext in the returned string.
 		
 	#>
 	[cmdletbinding(DefaultParameterSetName="not_integrated")]
 
 	Param (
-        [Parameter(Mandatory=$true)]
-        [Alias("Serverinstance")]
+        [Parameter(Mandatory=$true,Position=0)]
         [string]$Server,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=1)]
         [string]$Database,
 
-        [Parameter(Mandatory=$True,ParameterSetName="not_integrated")]
+        [Parameter(Mandatory=$True,ParameterSetName="not_integrated",Position=2)]
         [System.Management.Automation.PSCredential]
         [System.Management.Automation.Credential()]
         $Credential,
 
-        [Parameter(Mandatory=$true,ParameterSetName="integrated")]
+        [Parameter(Mandatory=$true,ParameterSetName="integrated",Position=2)]
         [switch]$UseWindowsAuthentication
     )
 
