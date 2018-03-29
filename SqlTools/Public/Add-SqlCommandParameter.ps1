@@ -55,8 +55,8 @@ function Add-SqlCommandParameter {
 
     PROCESS {
 
-        $Command = $SqlCommand.Parameters.Add($SqlParameterName,$SqlParameterType)
-        $Command = $SqlCommand.Parameters[$SqlParameterName].Value = $SqlParameterValue
-        $Command
+        $AddCommand = $SqlCommand.Parameters.Add($SqlParameterName,$SqlParameterType)
+        $SqlCommand.Parameters[$SqlParameterName].Value = $SqlParameterValue
+        #$SqlCommand
     }
 }
