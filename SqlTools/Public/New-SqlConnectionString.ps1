@@ -9,12 +9,12 @@ function New-SqlConnectionString {
     .EXAMPLE
         New-SqlConnectionString -Server "mysqlserver.example.com" -Database "MyFavoriteDb" -UseWindowsAuthentication
 
-        Connects to MyFavoriteDB on mysqlserver.example.com using integrated Windows authenticatin
+        Creates Connection String for to MyFavoriteDB on mysqlserver.example.com using integrated Windows authenticatin
 
     .EXAMPLE
         New-SqlConnectionString -Server "mysqlserver.exampl.com" -Database "MyFavoriteDb" -Credential (Get-Credential)
         
-        Prompts for Credentials and connects to MyFavoriteDB on mysqlserver.example.com.
+        Prompts for Credentials and Creates Connection String for MyFavoriteDB on mysqlserver.example.com.
 		
     .PARAMETER Server
         IP address or Hostname of SQL Server.

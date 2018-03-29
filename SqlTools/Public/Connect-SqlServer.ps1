@@ -7,8 +7,36 @@ function Connect-SqlServer {
 		Creates a Connection to an SQL server using either an existing SQL Connection String or Server/Database/Credentials.
 
     .EXAMPLE
+        Connect-SqlServer -Server "mysqlserver.example.com" -Database "MyFavoriteDb" -UseWindowsAuthentication
+
+        Connects to MyFavoriteDB on mysqlserver.example.com using integrated Windows authenticatin
+
+    .EXAMPLE
+        Connect-SqlServer -Server "mysqlserver.exampl.com" -Database "MyFavoriteDb" -Credential (Get-Credential)
+        
+        Prompts for Credentials and Connects to MyFavoriteDB on mysqlserver.example.com.
+
+    .EXAMPLE
+        New-SqlConnectionString -Server "mysqlserver.exampl.com" -Database "MyFavoriteDb" -Credential (Get-Credential) | Connect-SqlServer
+        
+        Prompts for Credentials and Creates Connection String for MyFavoriteDB on mysqlserver.example.com.
+        Uses this Connection String to make the connection.
+		
+    .PARAMETER ConnectionString
+        Existing Connection String to use for Connection.
 
     .PARAMETER Server
+        IP address or Hostname of SQL Server.
+
+    .PARAMETER Database
+        Database to use for Connection.
+
+    .PARAMETER Credential
+        Credentials to use for Connection.
+
+    .PARAMETER UseWindowsAuthentication
+        Specifies that current Windows Credentials should be used for the Connection.
+        Note that these credentials will be available in plaintext in the returned string.
 		
 	#>
 	[cmdletbinding(DefaultParameterSetName="connstring")]
