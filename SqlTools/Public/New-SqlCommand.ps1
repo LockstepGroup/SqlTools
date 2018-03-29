@@ -25,7 +25,10 @@ function New-SqlCommand {
         [string]$SqlCommand,
 
         [Parameter(Mandatory=$true,ValueFromPipeline=$True,Position=1)]
-        [System.Data.SqlClient.SqlConnection]$SqlConnection
+        [System.Data.SqlClient.SqlConnection]$SqlConnection,
+
+        [Parameter(Mandatory=$false)]
+        [System.Data.SqlClient.SqlTransaction]$SqlTransaction
     )
 
     BEGIN {
@@ -34,6 +37,9 @@ function New-SqlCommand {
 
     PROCESS {
         $Command = New-Object System.Data.SqlClient.SqlCommand($SqlCommand,$SqlConnection)
+        if ($SqlTransaction) {
+            $Command.Transaction = $SqlTransaction
+        }
         $Command
     }
 }
