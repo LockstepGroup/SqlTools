@@ -44,6 +44,7 @@ function Add-SqlCommandParameter {
         [System.Data.SqlDbType]$SqlParameterType = [System.Enum]::GetValues([System.Data.SqlDbType]),
 
         [Parameter(Mandatory=$true,Position=3)]
+        [AllowEmptyString()]
         [alias('Value')]
         [string]$SqlParameterValue
     )
