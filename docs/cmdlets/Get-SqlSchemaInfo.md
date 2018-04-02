@@ -9,13 +9,13 @@ Get Schema info from an SQL Database.
 ### tablecolumns
 
 ```powershell
-Get-SqlSchemaInfo [-SqlConnection] <SqlConnection> -Table <String[]> -Column <String[]> 
+Get-SqlSchemaInfo [-SqlConnection <SqlConnection>] -Table <String[]> -Column <String[]> 
 ```
 
 ### tableonly
 
 ```powershell
-Get-SqlSchemaInfo [-SqlConnection] <SqlConnection> -Table <String[]> 
+Get-SqlSchemaInfo [-SqlConnection <SqlConnection>] -Table <String[]> 
 ```
 
 ## Description
@@ -55,9 +55,9 @@ Type: SqlConnection
 Parameter Sets: All
 Aliases: 
 
-Required: true
-Position: 1
-Default value: 
+Required: false
+Position: named
+Default value: $Global:SqlConnection
 Accept pipeline input: true (ByValue)
 Accept wildcard characters: false
 ```

@@ -8,7 +8,7 @@ Creates an Sql Transaction.
 
 
 ```powershell
-New-SqlTransaction [-SqlConnection] <SqlConnection> [-Name] <String> 
+New-SqlTransaction [-SqlConnection <SqlConnection>] [-Name] <String> 
 ```
 
 ## Description
@@ -49,9 +49,9 @@ Type: SqlConnection
 Parameter Sets: All
 Aliases: 
 
-Required: true
-Position: 1
-Default value: 
+Required: false
+Position: named
+Default value: $Global:SqlConnection
 Accept pipeline input: true (ByValue)
 Accept wildcard characters: false
 ```
@@ -65,7 +65,7 @@ Parameter Sets: All
 Aliases: 
 
 Required: true
-Position: 2
+Position: 1
 Default value: 
 Accept pipeline input: false
 Accept wildcard characters: false

@@ -8,7 +8,7 @@ Creates an SQL Command object.
 
 
 ```powershell
-New-SqlCommand [-SqlCommand] <String> [-SqlConnection] <SqlConnection> [-SqlTransaction <SqlTransaction>] 
+New-SqlCommand [-SqlCommand] <String> [-SqlConnection <SqlConnection>] [-SqlTransaction <SqlTransaction>] 
 ```
 
 ## Description
@@ -63,9 +63,9 @@ Type: SqlConnection
 Parameter Sets: All
 Aliases: 
 
-Required: true
-Position: 2
-Default value: 
+Required: false
+Position: named
+Default value: $Global:SqlConnection
 Accept pipeline input: true (ByValue)
 Accept wildcard characters: false
 ```

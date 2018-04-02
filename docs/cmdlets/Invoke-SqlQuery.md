@@ -15,7 +15,7 @@ Invoke-SqlQuery [-SqlCommand] <SqlCommand>
 ### textquery
 
 ```powershell
-Invoke-SqlQuery [-PlainTextCommand] <String> [-SqlConnection] <SqlConnection> 
+Invoke-SqlQuery [-PlainTextCommand] <String> [-SqlConnection <SqlConnection>] 
 ```
 
 ## Description
@@ -110,9 +110,9 @@ Type: SqlConnection
 Parameter Sets: textquery
 Aliases: 
 
-Required: true
-Position: 2
-Default value: 
+Required: false
+Position: named
+Default value: $Global:SqlConnection
 Accept pipeline input: true (ByValue)
 Accept wildcard characters: false
 ```

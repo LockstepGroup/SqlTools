@@ -76,6 +76,7 @@ function Connect-SqlServer {
 
         $Connection = New-Object System.Data.SqlClient.SqlConnection $ConnectionString
         $Connection.open()
+        $Global:SqlConnection = $Connection
         $Connection
     }
 }

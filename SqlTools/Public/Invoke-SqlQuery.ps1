@@ -43,8 +43,8 @@ function Invoke-SqlQuery {
         [Parameter(Mandatory=$true,ParameterSetName="textquery",ValueFromPipeline=$True,Position=0)]
         [string]$PlainTextCommand,
 
-        [Parameter(Mandatory=$true,ParameterSetName="textquery",ValueFromPipeline=$True,Position=1)]
-        [System.Data.SqlClient.SqlConnection]$SqlConnection
+        [Parameter(Mandatory=$False,ParameterSetName="textquery",ValueFromPipeline=$True)]
+        [System.Data.SqlClient.SqlConnection]$SqlConnection = $Global:SqlConnection
     )
 
     BEGIN {

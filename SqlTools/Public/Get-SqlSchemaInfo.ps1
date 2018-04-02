@@ -19,8 +19,8 @@ function Get-SqlSchemaInfo {
 	[cmdletbinding()]
 
 	Param (
-        [Parameter(Mandatory=$true,ValueFromPipeline=$True,Position=0)]
-        [System.Data.SqlClient.SqlConnection]$SqlConnection,
+        [Parameter(Mandatory=$false,ValueFromPipeline=$True)]
+        [System.Data.SqlClient.SqlConnection]$SqlConnection = $Global:SqlConnection,
 
         [Parameter(Mandatory=$true,ParameterSetName="tableonly")]
         [Parameter(Mandatory=$true,ParameterSetName="tablecolumns")]

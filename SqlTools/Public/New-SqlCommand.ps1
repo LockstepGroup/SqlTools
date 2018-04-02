@@ -25,8 +25,8 @@ function New-SqlCommand {
         [Parameter(Mandatory=$true,ValueFromPipeline=$True,Position=0)]
         [string]$SqlCommand,
 
-        [Parameter(Mandatory=$true,ValueFromPipeline=$True,Position=1)]
-        [System.Data.SqlClient.SqlConnection]$SqlConnection,
+        [Parameter(Mandatory=$False,ValueFromPipeline=$True)]
+        [System.Data.SqlClient.SqlConnection]$SqlConnection = $Global:SqlConnection,
 
         [Parameter(Mandatory=$false)]
         [System.Data.SqlClient.SqlTransaction]$SqlTransaction
