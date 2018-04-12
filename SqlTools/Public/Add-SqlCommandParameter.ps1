@@ -59,7 +59,12 @@ function Add-SqlCommandParameter {
 
     PROCESS {
         $VerboseMessage  = "DECLARE $SqlParameterName $SqlParameterType;`r`n"
-        $VerboseMessage += "SET $SqlParameterName = '$SqlParameterValue'`r`n"
+        if ($SqlParameterValue -eq '') {
+            $VerboseMessage += "SET $SqlParameterName = NULL`r`n"
+        } else {
+            $VerboseMessage += "SET $SqlParameterName = '$SqlParameterValue'`r`n"
+        }
+        
 
         if ($PSCmdlet.ShouldProcess("Adding Paramaeter to Command`r`n$VerboseMessage")) {
             Write-Verbose "$VerbosePrefix`r`n$VerboseMessage"
@@ -67,7 +72,11 @@ function Add-SqlCommandParameter {
             if ($IsNullable) {
                 $SqlCommand.Parameters[$SqlParameterName].IsNullable = $true
             }
-            $SqlCommand.Parameters[$SqlParameterName].Value = $SqlParameterValue
+            if ($SqlParameterValue -eq '') {
+                $SqlCommand.Parameters[$SqlParameterName].Value = $null    
+            } else {
+                $SqlCommand.Parameters[$SqlParameterName].Value = $SqlParameterValue
+            }
         }
         
     }
