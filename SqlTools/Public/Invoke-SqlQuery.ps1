@@ -48,13 +48,14 @@ function Invoke-SqlQuery {
     )
 
     BEGIN {
+        $VerbosePrefix = "Invoke-SqlQuery:"
         
     }
 
     PROCESS {
         switch ($PSCmdlet.ParameterSetName) {
             'textquery' {
-                Write-Verbose "PlainText Query: $PlainTextCommand"
+                Write-Verbose "$VerbosePrefix PlainText Query: $PlainTextCommand"
                 $SqlCommand = $SqlConnection | New-SqlCommand -SqlCommand $PlainTextCommand
                 continue
             }

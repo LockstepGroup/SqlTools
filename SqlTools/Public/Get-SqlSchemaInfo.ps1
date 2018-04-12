@@ -31,6 +31,7 @@ function Get-SqlSchemaInfo {
     )
 
     BEGIN {
+        $VerbosePrefix = "Get-SqlSchemaInfo:"
         function MakeArrayIntoSql ([string[]]$Array,[string]$Column) {
             $Query = "("
             $i = 0
@@ -79,7 +80,7 @@ function Get-SqlSchemaInfo {
             }
         }
 
-        Write-Verbose "Query $Query"
+        Write-Verbose "$VerbosePrefix $Query"
 
         $Results = Invoke-SqlQuery -PlainTextCommand $Query -SqlConnection $SqlConnection
 

@@ -59,7 +59,10 @@ function Connect-SqlServer {
         $Credential,
 
         [Parameter(Mandatory=$true,ParameterSetName="integrated",Position=2)]
-        [switch]$UseWindowsAuthentication
+        [switch]$UseWindowsAuthentication,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$ApplicationIntentRO
     )
 
     BEGIN {

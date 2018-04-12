@@ -28,7 +28,7 @@ function Add-SqlCommandParameter {
     Value of the Sql Parameter you wish to set.
 		
 	#>
-	[cmdletbinding()]
+	[cmdletbinding(SupportsShouldProcess=$True)]
 
 	Param (
         [Parameter(Mandatory=$true,ValueFromPipeline=$True,Position=0)]
@@ -46,16 +46,29 @@ function Add-SqlCommandParameter {
         [Parameter(Mandatory=$true,Position=3)]
         [AllowEmptyString()]
         [alias('Value')]
-        [string]$SqlParameterValue
+        [string]$SqlParameterValue,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$IsNullable
     )
 
     BEGIN {
-        
+        $VerbosePrefix = "Add-SqlCommandParameter:"
 
     }
 
     PROCESS {
-        $SqlCommand.Parameters.Add($SqlParameterName,$SqlParameterType) | Out-Null
-        $SqlCommand.Parameters[$SqlParameterName].Value = $SqlParameterValue
+        $VerboseMessage  = "DECLARE $SqlParameterName $SqlParameterType;`r`n"
+        $VerboseMessage += "SET $SqlParameterName = '$SqlParameterValue'`r`n"
+
+        if ($PSCmdlet.ShouldProcess("Adding Paramaeter to Command`r`n$VerboseMessage")) {
+            Write-Verbose "$VerbosePrefix`r`n$VerboseMessage"
+            $SqlCommand.Parameters.Add($SqlParameterName,$SqlParameterType) | Out-Null
+            if ($IsNullable) {
+                $SqlCommand.Parameters[$SqlParameterName].IsNullable = $true
+            }
+            $SqlCommand.Parameters[$SqlParameterName].Value = $SqlParameterValue
+        }
+        
     }
 }

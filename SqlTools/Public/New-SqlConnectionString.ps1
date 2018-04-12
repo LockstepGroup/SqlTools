@@ -45,7 +45,10 @@ function New-SqlConnectionString {
         $Credential,
 
         [Parameter(Mandatory=$true,ParameterSetName="integrated",Position=2)]
-        [switch]$UseWindowsAuthentication
+        [switch]$UseWindowsAuthentication,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$ApplicationIntentRO
     )
 
     $ConnectionString = "Server=$Server; Database=$Database; "
@@ -59,6 +62,10 @@ function New-SqlConnectionString {
             $ConnectionString += "Trusted_Connection=Yes; Integrated Security=SSPI;"
             continue
         }
+    }
+
+    if ($ApplicationIntentRO) {
+        $ConnectionString += "ApplicationIntent=READONLY;"
     }
 
     $ConnectionString
