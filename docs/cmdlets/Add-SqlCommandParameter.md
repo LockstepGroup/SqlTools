@@ -8,7 +8,7 @@ Adds a Paramaterized Value to an Sql Command.
 
 
 ```powershell
-Add-SqlCommandParameter [-SqlCommand] <SqlCommand> [-SqlParameterName] <String> [-SqlParameterType] [-SqlParameterValue] <String> 
+Add-SqlCommandParameter [-SqlCommand] <SqlCommand> [-SqlParameterName] <String> [-SqlParameterType] [-SqlParameterValue] <String> [-IsNullable] [-WhatIf] [-Confirm] 
 ```
 
 ## Description
@@ -98,6 +98,48 @@ Aliases: Value
 
 Required: true
 Position: 4
+Default value: 
+Accept pipeline input: false
+Accept wildcard characters: false
+```
+### -IsNullable
+
+
+```asciidoc
+Type: SwitchParameter
+Parameter Sets: All
+Aliases: 
+
+Required: false
+Position: named
+Default value: False
+Accept pipeline input: false
+Accept wildcard characters: false
+```
+### -WhatIf
+
+
+```asciidoc
+Type: SwitchParameter
+Parameter Sets: All
+Aliases: wi
+
+Required: false
+Position: named
+Default value: 
+Accept pipeline input: false
+Accept wildcard characters: false
+```
+### -Confirm
+
+
+```asciidoc
+Type: SwitchParameter
+Parameter Sets: All
+Aliases: cf
+
+Required: false
+Position: named
 Default value: 
 Accept pipeline input: false
 Accept wildcard characters: false

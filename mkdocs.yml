@@ -1,14 +1,14 @@
 site_name: SqlTools Docs
 theme: readthedocs
 pages:
+  - Home: index.md
   - Cmdlets:
-    - New-SqlConnectionString: cmdlets/New-SqlConnectionString.md
-    - Connect-SqlServer: cmdlets/Connect-SqlServer.md
-    - Complete-SqlCommand: cmdlets/Complete-SqlCommand.md
-    - New-SqlCommand: cmdlets/New-SqlCommand.md
     - New-SqlTransaction: cmdlets/New-SqlTransaction.md
+    - New-SqlCommand: cmdlets/New-SqlCommand.md
     - Invoke-SqlQuery: cmdlets/Invoke-SqlQuery.md
-    - Add-SqlCommandParameter: cmdlets/Add-SqlCommandParameter.md
     - Invoke-SqlTransaction: cmdlets/Invoke-SqlTransaction.md
     - Get-SqlSchemaInfo: cmdlets/Get-SqlSchemaInfo.md
-  - Home: index.md
+    - Complete-SqlCommand: cmdlets/Complete-SqlCommand.md
+    - New-SqlConnectionString: cmdlets/New-SqlConnectionString.md
+    - Connect-SqlServer: cmdlets/Connect-SqlServer.md
+    - Add-SqlCommandParameter: cmdlets/Add-SqlCommandParameter.md

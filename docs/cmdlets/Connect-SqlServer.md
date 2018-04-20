@@ -9,19 +9,19 @@ Creates a Connection to an SQL Server.
 ### connstring (Default)
 
 ```powershell
-Connect-SqlServer [-ConnectionString] <String> 
+Connect-SqlServer [-ConnectionString] <String> [-ApplicationIntentRO] 
 ```
 
 ### integrated
 
 ```powershell
-Connect-SqlServer [-Server] <String> [-Database] <String> [-UseWindowsAuthentication] 
+Connect-SqlServer [-Server] <String> [-Database] <String> [-UseWindowsAuthentication] [-ApplicationIntentRO] 
 ```
 
 ### not_integrated
 
 ```powershell
-Connect-SqlServer [-Server] <String> [-Database] <String> [-Credential] <PSCredential> 
+Connect-SqlServer [-Server] <String> [-Database] <String> [-Credential] <PSCredential> [-ApplicationIntentRO] 
 ```
 
 ## Description
@@ -157,6 +157,20 @@ Aliases:
 
 Required: true
 Position: 3
+Default value: False
+Accept pipeline input: false
+Accept wildcard characters: false
+```
+### -ApplicationIntentRO
+
+
+```asciidoc
+Type: SwitchParameter
+Parameter Sets: All
+Aliases: 
+
+Required: false
+Position: named
 Default value: False
 Accept pipeline input: false
 Accept wildcard characters: false

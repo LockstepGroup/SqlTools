@@ -38,7 +38,6 @@ function Add-SqlCommandParameter {
         [alias('Name')]
         [string]$SqlParameterName,
 
-        # Needs validation
         [Parameter(Mandatory=$true,Position=2)]
         [alias('Type')]
         [System.Data.SqlDbType]$SqlParameterType = [System.Enum]::GetValues([System.Data.SqlDbType]),
@@ -67,8 +66,41 @@ function Add-SqlCommandParameter {
         
 
         if ($PSCmdlet.ShouldProcess("Adding Paramaeter to Command`r`n$VerboseMessage")) {
+            
+
             Write-Verbose "$VerbosePrefix`r`n$VerboseMessage"
             $SqlCommand.Parameters.Add($SqlParameterName,$SqlParameterType) | Out-Null
+
+            $DbType = $SqlCommand.Parameters[$SqlParameterName].DbType
+
+            switch ($DbType) {
+                    'AnsiString' {
+                        $SqlTestEx = "[System.Data.SqlTypes.SqlString]::new(`"$SqlParameterValue`")"
+                        continue
+                    }
+                    'Bit' {
+                        $SqlTestEx = "[System.Data.SqlTypes.SqlBoolean]::new($SqlParameterValue)"
+                    }
+                default {
+                    $SqlTestEx = "[System.Data.SqlTypes.Sql$DbType]::new(`"$SqlParameterValue`")"
+                }
+            }
+            
+            Write-Verbose "testing: $SqlTestEx"
+
+            try {
+                if ($SqlParameterType -eq 'Bit') {
+
+                } else {
+                    Invoke-Expression $SqlTestEx
+                }
+            } catch [System.Management.Automation.MethodException] {
+                $Message = $VerbosePrefix + "Invalid value for type given. Value: $SqlParameterValue, Type: $SqlParameterType"
+                Throw $Message
+            } catch {
+                Throw $_.Exception.Message
+            }
+
             if ($IsNullable) {
                 $SqlCommand.Parameters[$SqlParameterName].IsNullable = $true
             }

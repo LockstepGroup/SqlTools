@@ -27,6 +27,11 @@ function Complete-SqlCommand {
     PROCESS {
         # At some point we'll need to handle other types of queries, but for now I know we have
         # INSERT and UPDATE
-        $SqlCommand.ExecuteNonQuery()
+        try {
+            $SqlCommand.ExecuteNonQuery()
+        } catch {
+            Throw $_
+        }
+        
     }
 }
