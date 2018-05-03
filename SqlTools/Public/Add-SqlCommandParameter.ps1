@@ -104,7 +104,7 @@ function Add-SqlCommandParameter {
             if ($IsNullable) {
                 $SqlCommand.Parameters[$SqlParameterName].IsNullable = $true
             }
-            if ($SqlParameterValue -eq '') {
+            if (($SqlParameterValue -eq '') -or ($SqlParameterValue -eq 0)) {
                 $SqlCommand.Parameters[$SqlParameterName].Value = $null    
             } else {
                 $SqlCommand.Parameters[$SqlParameterName].Value = $SqlParameterValue
