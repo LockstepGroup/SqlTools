@@ -44,7 +44,10 @@ function Invoke-SqlQuery {
         [string]$PlainTextCommand,
 
         [Parameter(Mandatory=$False,ParameterSetName="textquery",ValueFromPipeline=$True)]
-        [System.Data.SqlClient.SqlConnection]$SqlConnection = $Global:SqlConnection
+        [System.Data.SqlClient.SqlConnection]$SqlConnection = $Global:SqlConnection,
+		
+        [Parameter(Mandatory=$False,ParameterSetName="textquery",ValueFromPipeline=$True)]
+        [int]$CommandTimeout = 30
     )
 
     BEGIN {
@@ -64,6 +67,7 @@ function Invoke-SqlQuery {
 
         $Dataset     = New-Object System.Data.DataSet
         $DataAdapter = New-Object System.Data.SqlClient.SqlDataAdapter($SqlCommand)
+		$DataAdapter.SelectCommand.CommandTimeout = $CommandTimeout
         $DataAdapter.Fill($Dataset) | Out-Null
 
         return $Dataset
